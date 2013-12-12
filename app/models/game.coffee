@@ -4,9 +4,13 @@
 class Game
   @_id = _.uniqueId()
 
-  init: (@$rootScope, @$cookieStore, @$http, @$timeout) ->
+  init: (@$rootScope, @$cookieStore) ->
     @loaded = false
     @version = 1
+    @mode = 'normal'
+
+    @decks = []
+    @cards = []
 
   load : ->
     @_loadJSON []
@@ -38,20 +42,22 @@ class Game
     @$rootScope.game = @
 
   newGame: ->
-    this.addCard 'Chaos', '1-158E', 1
+    @cards.push new Card_Chaos(@)
+    @cards.push new Card_Jecht_1(@)
 
-  addCard: (name, serial, qte) ->
-    console.log name
+    deck = new Deck(@)
+    deck.add card for card in @cards
+    
+    @decks.push deck
 
-  run: ->
-    this.$timeout =>
-      @run();
-    , 1000
+  newPlay: ->
+    @mode = 'play'
+    @play = new Play(@)
 
   export: ->
-    save.time = (new Date()).toLocaleString();
-    save.version = @version;
-    save;
+    save.time = (new Date()).toLocaleString()
+    save.version = @version
+    save
 
   import: (save) ->
     @$cookieStore.put 'game', save

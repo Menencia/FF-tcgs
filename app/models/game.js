@@ -10,13 +10,14 @@ Game = (function() {
 
   Game._id = _.uniqueId();
 
-  Game.prototype.init = function($rootScope, $cookieStore, $http, $timeout) {
+  Game.prototype.init = function($rootScope, $cookieStore) {
     this.$rootScope = $rootScope;
     this.$cookieStore = $cookieStore;
-    this.$http = $http;
-    this.$timeout = $timeout;
     this.loaded = false;
-    return this.version = 1;
+    this.version = 1;
+    this.mode = 'normal';
+    this.decks = [];
+    return this.cards = [];
   };
 
   Game.prototype.load = function() {
@@ -60,18 +61,21 @@ Game = (function() {
   };
 
   Game.prototype.newGame = function() {
-    return this.addCard('Chaos', '1-158E', 1);
+    var card, deck, _i, _len, _ref;
+    this.cards.push(new Card_Chaos(this));
+    this.cards.push(new Card_Jecht_1(this));
+    deck = new Deck(this);
+    _ref = this.cards;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      card = _ref[_i];
+      deck.add(card);
+    }
+    return this.decks.push(deck);
   };
 
-  Game.prototype.addCard = function(name, serial, qte) {
-    return console.log(name);
-  };
-
-  Game.prototype.run = function() {
-    var _this = this;
-    return this.$timeout(function() {
-      return _this.run();
-    }, 1000);
+  Game.prototype.newPlay = function() {
+    this.mode = 'play';
+    return this.play = new Play(this);
   };
 
   Game.prototype["export"] = function() {

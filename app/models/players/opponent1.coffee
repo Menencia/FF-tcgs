@@ -1,0 +1,1 @@
+class Opponent1 extends Player

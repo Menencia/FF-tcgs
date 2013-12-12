@@ -27,6 +27,10 @@ app.config(['$routeProvider',
       templateUrl: 'partials/game.html',
       controller: GameCtrl
     }).
+    when('/play', {
+      templateUrl: 'partials/play.html',
+      controller: PlayCtrl
+    }).
     when('/save', {
       templateUrl: 'partials/save.html',
       controller: SaveCtrl
@@ -67,7 +71,7 @@ function NavCtrl($scope, $location, Game) {
  * /Game
  */
 
-function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Utils) {
+function GameCtrl($rootScope, $cookieStore, $location, Game, Utils) {
 
   // STEP 1
   // Load saved game from COOKIE
@@ -82,8 +86,29 @@ function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Ut
     return;
   }
 
-  Game.init($rootScope, $cookieStore, $http, $timeout);
+  Game.init($rootScope, $cookieStore);
   Game.load();
+
+  $rootScope.play = function() {
+    Game.newPlay();
+    $location.path("/play");
+  }
+
+};
+
+/**
+ * /Play
+ */
+
+function PlayCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game) {
+
+  /**
+   * Checkin'
+   */
+  if (!Game.loaded || Game.mode != 'play') {
+    $location.path("/game");
+    return;
+  }
 
 };
 
