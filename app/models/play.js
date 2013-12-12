@@ -7,13 +7,50 @@ Play = (function() {
     this.player = new Player(this);
     this.player.deck = this.game.decks[0];
     this.opponent = new Opponent1(this);
+    this.current = this.player;
+    this.startPhase('reset');
+    this.run();
   }
 
   Play.prototype.run = function() {
     var _this = this;
     return this.game.$timeout(function() {
+      _this.count++;
+      if (_this.count >= _this.countLimit) {
+        switch (_this.phase) {
+          case 'reset':
+            _this.current.undullCards();
+            _this.startPhase('draw', 0);
+            break;
+          case 'draw':
+            _this.current.draw();
+            _this.startPhase('main1', 60);
+            break;
+          case 'main1':
+            _this.startPhase('attack', 100);
+            break;
+          case 'attack':
+            _this.startPhase('main2', 60);
+            break;
+          case 'main2':
+            _this.startPhase('end', 0);
+            break;
+          case 'end':
+            _this.startPhase('waiting', -1);
+            _this.current.finishTurn();
+        }
+      }
       return _this.run();
     }, 1000);
+  };
+
+  Play.prototype.startPhase = function(phase, time) {
+    this.phase = phase;
+    if (time == null) {
+      time = 0;
+    }
+    this.count = 0;
+    return this.countLimit = time;
   };
 
   return Play;

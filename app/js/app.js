@@ -71,7 +71,7 @@ function NavCtrl($scope, $location, Game) {
  * /Game
  */
 
-function GameCtrl($rootScope, $cookieStore, $location, Game, Utils) {
+function GameCtrl($rootScope, $cookieStore, $timeout, $location, Game, Utils) {
 
   // STEP 1
   // Load saved game from COOKIE
@@ -86,7 +86,7 @@ function GameCtrl($rootScope, $cookieStore, $location, Game, Utils) {
     return;
   }
 
-  Game.init($rootScope, $cookieStore);
+  Game.init($rootScope, $cookieStore, $timeout);
   Game.load();
 
   $rootScope.play = function() {

@@ -10,9 +10,10 @@ Game = (function() {
 
   Game._id = _.uniqueId();
 
-  Game.prototype.init = function($rootScope, $cookieStore) {
+  Game.prototype.init = function($rootScope, $cookieStore, $timeout) {
     this.$rootScope = $rootScope;
     this.$cookieStore = $cookieStore;
+    this.$timeout = $timeout;
     this.loaded = false;
     this.version = 1;
     this.mode = 'normal';

@@ -2,7 +2,17 @@
 var Card;
 
 Card = (function() {
-  function Card() {}
+  function Card() {
+    this.dulled = false;
+  }
+
+  Card.prototype.dull = function() {
+    return this.dulled = true;
+  };
+
+  Card.prototype.undull = function() {
+    return this.dulled = false;
+  };
 
   return Card;
 

@@ -1,5 +1,7 @@
 <div class="you">
-  <div clas="hand"></div>
+  <div clas="hand">
+    <div ng-repeat="card in game.play.player.hand">{{card.name}}</div>
+  </div>
   <div clas="forwards"></div>
   <div clas="backups">
     <div ng-repeat="backup in game.play.backups"></div>

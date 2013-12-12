@@ -4,7 +4,7 @@
 class Game
   @_id = _.uniqueId()
 
-  init: (@$rootScope, @$cookieStore) ->
+  init: (@$rootScope, @$cookieStore, @$timeout) ->
     @loaded = false
     @version = 1
     @mode = 'normal'
