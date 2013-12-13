@@ -1,6 +1,6 @@
 class Player
 
-  constructor: (@name, @play) ->
+  constructor: (@name) ->
     @crystals = 
       fire: 0
       aqua: 0

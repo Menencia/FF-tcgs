@@ -1,18 +1,19 @@
 class Play
 
   constructor: (@game) ->
-    @player = new Player 'Player', @
+    @player = new Player 'Player'
     @player.deck = @game.decks[0]
     for card in @player.deck.cards
       card.setPlayer(@player)
       card.setPlay(@)
 
-    @opponent = new Opponent1 'Computer', @
-    for card in @opponent.deck.cards 
-      card.setPlayer(@opponent) 
+    @computer = new Computer_1 'Computer'
+    for card in @computer.deck.cards 
+      card.setPlayer(@computer) 
       card.setPlay(@) 
     
     @current = @player
+    @opponent = @computer
     
     @startPhase 'reset'
     @run()
@@ -25,7 +26,7 @@ class Play
         switch @phase
           when 'reset'
             @current.undullCards();
-            @startPhase 'draw', 0
+            @startPhase 'draw'
           when 'draw'
             @current.draw()
             @startPhase 'main1', 60
@@ -34,12 +35,15 @@ class Play
           when 'attack'
             @startPhase 'main2', 60
           when 'main2'
-            @startPhase 'end', 0
+            @startPhase 'end'
           when 'end'
-            @startPhase 'waiting', -1
-            @current.finishTurn()
+            @startPhase 'reset'
+            [@current, @opponent] = [@opponent, @current]
 
       @run()
     , 1000
       
   startPhase: (@phase, @time=0) ->
+
+  endPhase: ->
+    @time = 0

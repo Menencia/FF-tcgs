@@ -3,7 +3,8 @@
   <div class="col-md-3 text-center">
     {{game.play.current.name}}<br />
     {{game.play.phase}}<br />
-    {{game.play.time}}
+    {{game.play.time}}<br />
+    <button type="button" class="btn btn-primary btn-xs" ng-click="game.play.endPhase()">Next</button>
   </div>
   <div class="col-md-3"></div>
 </div>

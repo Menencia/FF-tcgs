@@ -5,7 +5,7 @@ Play = (function() {
   function Play(game) {
     var card, _i, _j, _len, _len1, _ref, _ref1;
     this.game = game;
-    this.player = new Player('Player', this);
+    this.player = new Player('Player');
     this.player.deck = this.game.decks[0];
     _ref = this.player.deck.cards;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -13,14 +13,15 @@ Play = (function() {
       card.setPlayer(this.player);
       card.setPlay(this);
     }
-    this.opponent = new Opponent1('Computer', this);
-    _ref1 = this.opponent.deck.cards;
+    this.computer = new Computer_1('Computer');
+    _ref1 = this.computer.deck.cards;
     for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
       card = _ref1[_j];
-      card.setPlayer(this.opponent);
+      card.setPlayer(this.computer);
       card.setPlay(this);
     }
     this.current = this.player;
+    this.opponent = this.computer;
     this.startPhase('reset');
     this.run();
   }
@@ -28,12 +29,13 @@ Play = (function() {
   Play.prototype.run = function() {
     var _this = this;
     return this.game.$timeout(function() {
+      var _ref;
       _this.time--;
       if (_this.time <= 0) {
         switch (_this.phase) {
           case 'reset':
             _this.current.undullCards();
-            _this.startPhase('draw', 0);
+            _this.startPhase('draw');
             break;
           case 'draw':
             _this.current.draw();
@@ -46,11 +48,11 @@ Play = (function() {
             _this.startPhase('main2', 60);
             break;
           case 'main2':
-            _this.startPhase('end', 0);
+            _this.startPhase('end');
             break;
           case 'end':
-            _this.startPhase('waiting', -1);
-            _this.current.finishTurn();
+            _this.startPhase('reset');
+            _ref = [_this.opponent, _this.current], _this.current = _ref[0], _this.opponent = _ref[1];
         }
       }
       return _this.run();
@@ -60,6 +62,10 @@ Play = (function() {
   Play.prototype.startPhase = function(phase, time) {
     this.phase = phase;
     this.time = time != null ? time : 0;
+  };
+
+  Play.prototype.endPhase = function() {
+    return this.time = 0;
   };
 
   return Play;

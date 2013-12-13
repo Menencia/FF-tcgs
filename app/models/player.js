@@ -2,9 +2,8 @@
 var Player;
 
 Player = (function() {
-  function Player(name, play) {
+  function Player(name) {
     this.name = name;
-    this.play = play;
     this.crystals = {
       fire: 0,
       aqua: 0,

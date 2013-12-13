@@ -1,6 +1,9 @@
-class Opponent1 extends Player
+class Computer_1 extends Player
 
   constructor: ->
+    name = 'Computer'
+    super name
+
     @cards = []
     @cards.push new Card_Red_XIII_1(@)
     @cards.push new Card_Jecht_1(@)
