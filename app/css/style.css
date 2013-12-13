@@ -24,11 +24,39 @@
   margin: 0 0 -3px 2px;
 }
 
+.elt {  
+  border-radius: 5px;
+  display: inline-block;
+  margin: 0 0 -3px 2px;
+  padding: 0 2px;
+}
+
+.wind {
+  color: #fff;
+  background-color: #090;
+}
+
 .fire {
   color: #fff;
   background-color: #900;
-  border-radius: 5px;
-  display: inline-block;
-  margin: 0 0 0 2px;
-  padding: 0 2px;
+}
+
+.aqua {
+  color: #fff;
+  background-color: #009;
+}
+
+.ice {
+  color: #fff;
+  background-color: #009;
+}
+
+.earth {
+  color: #fff;
+  background-color: #009;
+}
+
+.thunder {
+  color: #fff;
+  background-color: #009;
 }

@@ -6,6 +6,10 @@ Card = (function() {
     this.dulled = false;
   }
 
+  Card.prototype.setPlayer = function(player) {
+    this.player = player;
+  };
+
   Card.prototype.setPlay = function(play) {
     this.play = play;
   };
@@ -16,6 +20,15 @@ Card = (function() {
 
   Card.prototype.undull = function() {
     return this.dulled = false;
+  };
+
+  Card.prototype.discard = function() {
+    var _ref;
+    this.player.hand = _.without(this.player.hand, this);
+    this.player.breaks.unshift(this);
+    if ((_ref = this.cost[0].elt) !== 'light' && _ref !== 'dark') {
+      return this.player.crystals[this.cost[0].elt] += 2;
+    }
   };
 
   return Card;

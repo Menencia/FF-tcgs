@@ -23,6 +23,9 @@ class Card_Red_XIII_1 extends Card
     }
   ]
 
+  constructor: ->
+    
+
   onGame: ->
     @game.choose {
         forward: 1

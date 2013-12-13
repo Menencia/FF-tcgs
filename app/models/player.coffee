@@ -5,7 +5,11 @@ class Player
       fire: 0
       aqua: 0
       wind: 0
+      ice: 0
+      earth: 0
+      thunder: 0
     @hand = []
+    @breaks = []
     @backups = []
     @forwards = []
 

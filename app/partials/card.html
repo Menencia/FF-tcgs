@@ -1,0 +1,8 @@
+<span class="elt {{c.elt}}" ng-repeat="c in card.cost">{{c.nbr}}</span>
+{{card.name}}<br />
+<div class="ability" ng-repeat="ability in card.abilities">
+  <span class="elt {{c.elt}}" ng-repeat="c in ability.cost">{{c.nbr}}</span>
+  <span class="name">{{ability.name}}</span> {{ability.text}}
+</div>
+<button type="button" class="btn btn-primary btn-xs" ng-click="card.discard()">Discard</button>
+<button type="button" class="btn btn-primary btn-xs">Play</button>

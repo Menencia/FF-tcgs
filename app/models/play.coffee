@@ -3,11 +3,14 @@ class Play
   constructor: (@game) ->
     @player = new Player 'Player', @
     @player.deck = @game.decks[0]
-    card.setPlay(@) for card in @player.deck.cards 
-
+    for card in @player.deck.cards
+      card.setPlayer(@player)
+      card.setPlay(@)
 
     @opponent = new Opponent1 'Computer', @
-    card.setPlay(@) for card in @opponent.deck.cards 
+    for card in @opponent.deck.cards 
+      card.setPlayer(@opponent) 
+      card.setPlay(@) 
     
     @current = @player
     

@@ -10,12 +10,14 @@ Play = (function() {
     _ref = this.player.deck.cards;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       card = _ref[_i];
+      card.setPlayer(this.player);
       card.setPlay(this);
     }
     this.opponent = new Opponent1('Computer', this);
     _ref1 = this.opponent.deck.cards;
     for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
       card = _ref1[_j];
+      card.setPlayer(this.opponent);
       card.setPlay(this);
     }
     this.current = this.player;
