@@ -2,7 +2,14 @@
 var Player;
 
 Player = (function() {
-  function Player() {
+  function Player(name, play) {
+    this.name = name;
+    this.play = play;
+    this.crystals = {
+      fire: 0,
+      aqua: 0,
+      wind: 0
+    };
     this.hand = [];
     this.backups = [];
     this.forwards = [];

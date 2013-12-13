@@ -1,9 +1,14 @@
 class Play
 
   constructor: (@game) ->
-    @player = new Player(@)
+    @player = new Player 'Player', @
     @player.deck = @game.decks[0]
-    @opponent = new Opponent1(@)
+    card.setPlay(@) for card in @player.deck.cards 
+
+
+    @opponent = new Opponent1 'Computer', @
+    card.setPlay(@) for card in @opponent.deck.cards 
+    
     @current = @player
     
     @startPhase 'reset'
@@ -11,9 +16,9 @@ class Play
 
   run: ->
     @game.$timeout =>
-      @count++
+      @time--
 
-      if @count >= @countLimit
+      if @time <= 0
         switch @phase
           when 'reset'
             @current.undullCards();
@@ -34,6 +39,4 @@ class Play
       @run()
     , 1000
       
-  startPhase: (@phase, time=0) ->
-    @count = 0
-    @countLimit = time
+  startPhase: (@phase, @time=0) ->

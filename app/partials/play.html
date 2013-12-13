@@ -1,14 +1,71 @@
-<div class="you">
-  <div clas="hand">
-    <div ng-repeat="card in game.play.player.hand">{{card.name}}</div>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-3 text-center">
+    {{game.play.current.name}}<br />
+    {{game.play.phase}}<br />
+    {{game.play.time}}
   </div>
-  <div clas="forwards"></div>
-  <div clas="backups">
-    <div ng-repeat="backup in game.play.backups"></div>
-  </div>
+  <div class="col-md-3"></div>
 </div>
 
-<div class="opponent">
-  <div clas="forwards"></div>
-  <div clas="backups"></div>
+<div class="row">
+  <div class="player col-md-6">
+    <h5>Player</h5>
+
+    <div class="row">
+      
+      <div class="hand col-md-6">
+        <h6>Hand</h6>
+        <div class="card" ng-repeat="card in game.play.player.hand">
+          <span class="{{c.elt}}" ng-repeat="c in card.cost">{{c.nbr}}</span>
+          {{card.name}}<br />
+          <div class="ability" ng-repeat="ability in card.abilities">
+            <span class="{{c.elt}}" ng-repeat="c in ability.cost">{{c.nbr}}</span>
+            <span class="name">{{ability.name}}</span> {{ability.text}}
+          </div>
+          <button type="button" class="btn btn-primary btn-xs" ng-click="card.discard()">Discard</button>
+          <button type="button" class="btn btn-primary btn-xs">Play</button>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <h6>Forwards</h6>
+        
+        <div class="forwards">
+          <div ng-repeat="card in game.play.player.forwards"></div>
+        </div>
+
+        <h6>Backups</h6>
+        
+        <div class="backups">
+          <div ng-repeat="card in game.play.player.backups"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="opponent col-md-6">
+    <h5>Computer</h5>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <h6>Forwards</h6>
+
+        <div class="forwards">
+          <div ng-repeat="card in game.play.player.forwards"></div>
+        </div>
+
+        <h6>Backups</h6>
+
+        <div class="backups">
+          <div ng-repeat="card in game.play.player.backups"></div>
+        </div>
+      </div>
+
+    </div>
+  
+  </div>
 </div>

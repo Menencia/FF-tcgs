@@ -3,10 +3,21 @@ var Play;
 
 Play = (function() {
   function Play(game) {
+    var card, _i, _j, _len, _len1, _ref, _ref1;
     this.game = game;
-    this.player = new Player(this);
+    this.player = new Player('Player', this);
     this.player.deck = this.game.decks[0];
-    this.opponent = new Opponent1(this);
+    _ref = this.player.deck.cards;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      card = _ref[_i];
+      card.setPlay(this);
+    }
+    this.opponent = new Opponent1('Computer', this);
+    _ref1 = this.opponent.deck.cards;
+    for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+      card = _ref1[_j];
+      card.setPlay(this);
+    }
     this.current = this.player;
     this.startPhase('reset');
     this.run();
@@ -15,8 +26,8 @@ Play = (function() {
   Play.prototype.run = function() {
     var _this = this;
     return this.game.$timeout(function() {
-      _this.count++;
-      if (_this.count >= _this.countLimit) {
+      _this.time--;
+      if (_this.time <= 0) {
         switch (_this.phase) {
           case 'reset':
             _this.current.undullCards();
@@ -46,11 +57,7 @@ Play = (function() {
 
   Play.prototype.startPhase = function(phase, time) {
     this.phase = phase;
-    if (time == null) {
-      time = 0;
-    }
-    this.count = 0;
-    return this.countLimit = time;
+    this.time = time != null ? time : 0;
   };
 
   return Play;

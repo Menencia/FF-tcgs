@@ -42,7 +42,7 @@ class Game
     @$rootScope.game = @
 
   newGame: ->
-    @cards.push new Card_Chaos(@)
+    @cards.push new Card_Red_XIII_1(@)
     @cards.push new Card_Jecht_1(@)
 
     deck = new Deck(@)

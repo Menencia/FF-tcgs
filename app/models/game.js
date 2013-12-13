@@ -63,7 +63,7 @@ Game = (function() {
 
   Game.prototype.newGame = function() {
     var card, deck, _i, _len, _ref;
-    this.cards.push(new Card_Chaos(this));
+    this.cards.push(new Card_Red_XIII_1(this));
     this.cards.push(new Card_Jecht_1(this));
     deck = new Deck(this);
     _ref = this.cards;

@@ -9,12 +9,13 @@
     
     <title>FF TCG</title>
 
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     
     <script src="js/underscore.min.js"></script>
     
     <script src="models/card.js"></script>
-    <script src="models/cards/Chaos.js"></script>
+    <script src="models/cards/Red_XIII_1.js"></script>
     <script src="models/cards/Jecht_1.js"></script>
     <script src="models/deck.js"></script>
     <script src="models/player.js"></script>
@@ -33,24 +34,22 @@
 
   <body>
 
-    <header>
-      <div class="wrapper">
-        FF TCG
+    <nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Brand</a>
       </div>
-    </header>
 
-    <nav ng-controller="NavCtrl">
-        <ul>
-            <li ng-click="game()" ng-class="{ current: isActive('/game')}">Game</li><!--
-            --><li ng-click="save()" class="last" ng-class="{ current: isActive('/save')}">Save</li>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li ng-class="{ active: isActive('/game')}"><a href="#/game">Game</a></li>
+          <li ng-class="{ active: isActive('/save')}"><a href="#/save">Save</a></li>
         </ul>
+      </div><!-- /.navbar-collapse -->
     </nav>
 
-    <div class="wrapper" ng-view></div>
-
-    <div class="tmps"></div>
-    
-    <div class="clear"></div>
+    <div class="container" ng-view></div>
 
     <footer>
       <div class="wrapper">

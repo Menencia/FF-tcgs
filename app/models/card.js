@@ -6,6 +6,10 @@ Card = (function() {
     this.dulled = false;
   }
 
+  Card.prototype.setPlay = function(play) {
+    this.play = play;
+  };
+
   Card.prototype.dull = function() {
     return this.dulled = true;
   };

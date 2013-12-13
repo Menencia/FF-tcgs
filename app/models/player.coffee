@@ -1,6 +1,10 @@
 class Player
 
-  constructor: ->
+  constructor: (@name, @play) ->
+    @crystals = 
+      fire: 0
+      aqua: 0
+      wind: 0
     @hand = []
     @backups = []
     @forwards = []
