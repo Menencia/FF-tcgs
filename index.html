@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" ng-app="ff-tcg">
+<html lang="fr" ng-app="ff-tcgs">
 <head>
     <meta charset="utf-8"/>
     <meta name="description" content=""/>
@@ -16,21 +16,26 @@
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="bower_components/traceur-runtime/traceur-runtime.min.js"></script>
 
+    <!-- chargement des cartes -->
     <script src="dist/card.js"></script>
+    <script src="dist/cards/Red_XIII_1.js"></script>
+    <script src="dist/cards/Jecht_1.js"></script>
+
     <script src="dist/deck.js"></script>
     <script src="dist/player.js"></script>
     <script src="dist/players/Computer_1.js"></script>
     <script src="dist/play.js"></script>
-    <script src="dist/game.js"></script>
     <script src="dist/app.js"></script>
+    <script src="dist/game.js"></script>
 
 
 </head>
 
-<body>
+<body ng-controller="IndexCtrl">
 
-<nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
+<nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <a class="navbar-brand" href="#">Brand</a>
