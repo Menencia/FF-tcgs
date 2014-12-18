@@ -7,7 +7,7 @@
     <meta name="revisit-after" content="7 days"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1"/>
 
-    <title>FF TCG</title>
+    <title>FF TCGS</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -35,27 +35,17 @@
 
 <body ng-controller="IndexCtrl">
 
-<nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Brand</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <li ng-class="{ active: isActive('/game')}"><a href="#/game">Game</a></li>
-            <li ng-class="{ active: isActive('/save')}"><a href="#/save">Save</a></li>
-        </ul>
-    </div>
-    <!-- /.navbar-collapse -->
+<nav>
+    <ul>
+        <li ng-class="{ active: isActive('/game')}"><a href="#/game">Game</a></li>
+    </ul>
 </nav>
 
 <div class="container" ng-view></div>
 
 <footer>
     <div class="wrapper">
-        ©2013 menencia.com, version <strong><big>{{game.version}}</big></strong> ALPHA
+        ©2014 menencia.com, version <strong><big>{{game.version}}</big></strong>
     </div>
 </footer>
 

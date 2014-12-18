@@ -1,35 +1,22 @@
 class Game {
 
-    constructor() {
-        this.id = _.uniqueId();
-        this.loaded = false;
-        this.version = 1;
-        this.mode = 'normal';
-
-        this.decks = [];
-        this.cards = [];
-    }
-
-    /**
-     *
-     * @param $rootScope
-     * @param $cookieStore
-     * @param $timeout
-     */
-    init($rootScope, $cookieStore, $timeout) {
+    constructor($rootScope, $cookieStore, $timeout) {
+        // angular vars
         this.$rootScope = $rootScope;
         this.$cookieStore = $cookieStore;
         this.$timeout = $timeout;
-        var save = this.$cookieStore.get('game');
-        if (save) {
-            // Do nothing
-        } else {
-            this.newGame();
-        }
 
-        this.loaded = true;
+        // detect first load
+        this.loaded = false;
 
+        // version
+        this.version = '0.1.0';
+
+        // binding
         this.$rootScope.game = this;
+
+        // timer
+        this.timer = null;
     }
 
     /**
@@ -53,6 +40,10 @@ class Game {
     newPlay() {
         this.mode = 'play';
         this.play = new Play(this);
+    }
+
+    test() {
+        return "1";
     }
 
     /**
