@@ -1,25 +1,38 @@
 class Play {
 
-    constructor(game) {
+    //const PLAYER_TURN = 'player';
+    //const OPPONENT_TURN = 'opponent';
+
+    constructor(game, player, opponent) {
         this.game = game;
-        this.player = new Player('Player');
-        this.player.deck = this.game.decks[0];
-        for (var card of this.player.deck.cards) {
-            card.setPlayer(this.player);
-            card.setPlay(this);
-        }
+        this.player = player;
+        this.opponent = opponent;
 
-        this.computer = new Computer_1('Computer');
-        for (var card of this.computer.deck.cards) {
-            card.setPlayer(this.computer);
-            card.setPlay(this);
-        }
+        // const
+        this.PLAYER_TURN = 'player';
+        this.OPPONENT_TURN = 'opponent';
 
-        this.current = this.player;
-        this.opponent = this.computer;
+        // current turn
+        this.turn = this.PLAYER_TURN;
 
-        this.startPhase('reset');
+        this.startPhase('draw');
         this.run();
+    }
+
+    /**
+     *
+     * @returns {*}
+     */
+    current() {
+        return this[this.turn];
+    }
+
+    /**
+     *
+     * @returns {boolean}
+     */
+    isMe() {
+        return this.turn == this.PLAYER_TURN;
     }
 
     /**
@@ -32,23 +45,26 @@ class Play {
             if (this.time <= 0) {
                 switch (this.phase) {
                     case 'reset':
-                        this.current.undullCards();
+                        this.current().undullCards();
                         this.startPhase('draw');
                         break;
                     case 'draw':
-                        this.current.draw();
+                        this.current().draw();
                         this.startPhase('main1', 60);
+                        break;
                     case 'main1':
                         this.startPhase('attack', 100);
+                        break;
                     case 'attack':
                         this.startPhase('main2', 60);
+                        break;
                     case 'main2':
                         this.startPhase('end');
+                        break;
                     case 'end':
+                        this.turn = (this.PLAYER_TURN) ? this.OPPONENT_TURN : this.PLAYER_TURN;
                         this.startPhase('reset');
-                        var [current, opponent] = [this.opponent, this.current];
-                        this.current = current;
-                        this.opponent = opponent;
+                        break;
                 }
             }
             this.run();

@@ -1,7 +1,8 @@
 class Player {
 
-    constructor(name) {
+    constructor(game, name, deck) {
         this.name = name;
+        this.deck = deck;
         this.crystals = {
             fire   : 0,
             aqua   : 0,

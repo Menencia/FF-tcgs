@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-3 text-center">
-    {{game.play.current.name}}<br />
+    {{game.play.current().name}}<br />
     {{game.play.phase}}<br />
     {{game.play.time}}<br />
-    <button type="button" class="btn btn-primary btn-xs" ng-click="game.play.endPhase()">Next</button>
+    <button ng-click="game.play.endPhase()" ng-show="game.play.isMe()">Next</button>
   </div>
   <div class="col-md-3"></div>
 </div>

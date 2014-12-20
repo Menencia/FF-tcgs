@@ -9,9 +9,10 @@ var app = angular.module('ff-tcgs', ['ngRoute', 'ngCookies']);
 /**
  * Game Service
  */
-app.factory('Game', ['$rootScope', '$cookieStore', '$timeout', function ($rootScope, $cookieStore, $timeout) {
-    return new Game($rootScope, $cookieStore, $timeout);
-}]);
+app.factory('Game', ['$rootScope', '$cookieStore', '$timeout', '$location',
+    function ($rootScope, $cookieStore, $timeout, $location) {
+        return new Game($rootScope, $cookieStore, $timeout, $location);
+    }]);
 
 /**
  * Routes logic

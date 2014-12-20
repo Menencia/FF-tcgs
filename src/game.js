@@ -1,13 +1,14 @@
 class Game {
 
-    constructor($rootScope, $cookieStore, $timeout) {
+    constructor($rootScope, $cookieStore, $timeout, $location) {
         // angular vars
         this.$rootScope = $rootScope;
         this.$cookieStore = $cookieStore;
         this.$timeout = $timeout;
+        this.$location = $location;
 
         // detect first load
-        this.loaded = false;
+        this.loaded = true;
 
         // version
         this.version = '0.1.0';
@@ -22,28 +23,26 @@ class Game {
     /**
      *
      */
-    newGame() {
-        this.cards.push(new Card_Red_XIII_1());
-        this.cards.push(new Card_Jecht_1());
+    newPlay() {
+        // deck player
+        var deck = new DeckEntrySetBlack();
 
-        var deck = new Deck(this);
-        for (var card of this.cards) {
-            deck.add(card);
-        }
+        // building play
+        var player = new Player(this, 'Player', deck);
+        var computer = new ComputerEntrySetBlack(this);
+        this.play = new Play(this, player, computer);
 
-        this.decks.push(deck);
+        // redirect
+        this.$location.path('/play');
     }
 
     /**
      *
      */
-    newPlay() {
-        this.mode = 'play';
-        this.play = new Play(this);
-    }
-
-    test() {
-        return "1";
+    redirect() {
+       if (!this.loaded) {
+           this.$location.path('/game');
+       }
     }
 
     /**

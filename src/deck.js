@@ -1,7 +1,7 @@
 class Deck {
 
-    constructor() {
-        this.name = 'Default';
+    constructor(name) {
+        this.name = name;
         this.cards = [];
     }
 
