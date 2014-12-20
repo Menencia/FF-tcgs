@@ -1,12 +1,10 @@
 class Play {
 
-    //const PLAYER_TURN = 'player';
-    //const OPPONENT_TURN = 'opponent';
-
-    constructor(game, player, opponent) {
+    constructor(game) {
         this.game = game;
-        this.player = player;
-        this.opponent = opponent;
+        this.player = new Player_Menencia(this);
+        this.opponent = new Computer_Entry_Set_Black(this);
+
 
         // const
         this.PLAYER_TURN = 'player';

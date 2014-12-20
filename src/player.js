@@ -1,6 +1,12 @@
 class Player {
 
-    constructor(game, name, deck) {
+    constructor(play, name, deck) {
+        // Play instance
+        this.play = play;
+
+        // build deck
+        deck = new deck(this);
+
         this.name = name;
         this.deck = deck;
         this.crystals = {

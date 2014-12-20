@@ -1,23 +1,8 @@
 class Card {
 
-    constructor() {
+    constructor(deck) {
+        this.deck = deck;
         this.dulled = false;
-    }
-
-    /**
-     *
-     * @param player
-     */
-    setPlayer(player) {
-        this.player = player;
-    }
-
-    /**
-     *
-     * @param play
-     */
-    setPlay(play) {
-        this.play = play;
     }
 
     /**
@@ -35,14 +20,38 @@ class Card {
     }
 
     /**
-     *
+     * Owner of the card
+     * @returns {owner}
+     */
+    owner() {
+        return this.deck.owner;
+    }
+
+    /**
+     * Play instance
+     * @returns {play|Function|$rootScope.play}
+     */
+    play() {
+        return this.owner().play;
+    }
+
+    /**
+     * Game instance
+     * @returns {game|Game.$rootScope.game|Play.game}
+     */
+    game() {
+        return this.play().game;
+    }
+
+    /**
+     * Discard a card from hand
      */
     discard() {
-        this.player.hand = _.remove(this.player.hand, this);
-        this.player.breaks.unshift(this);
+        this.owner().hand = _.remove(this.owner.hand, this);
+        this.owner().breaks.unshift(this);
 
-        if (this.cost[0].elt > ['light', 'dark']) {
-            this.player.crystals[this.cost[0].elt] += 2;
+        if ($.inArray(this.cost[0].elt, ['light', 'dark']) == -1) {
+            this.owner().crystals[this.cost[0].elt] += 2;
         }
     }
 }

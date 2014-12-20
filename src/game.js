@@ -24,13 +24,8 @@ class Game {
      *
      */
     newPlay() {
-        // deck player
-        var deck = new DeckEntrySetBlack();
-
         // building play
-        var player = new Player(this, 'Player', deck);
-        var computer = new ComputerEntrySetBlack(this);
-        this.play = new Play(this, player, computer);
+        this.play = new Play(this);
 
         // redirect
         this.$location.path('/play');

@@ -1,7 +1,6 @@
-class ComputerEntrySetBlack extends Player {
+class Computer_Entry_Set_Black extends Player {
 
-    constructor(game) {
-        var deck = new DeckEntrySetBlack();
-        super(game, 'Computer Entry Set Black', deck);
+    constructor(play) {
+        super(play, 'Computer Entry Set Black', Deck_Entry_Set_Black);
     }
 }

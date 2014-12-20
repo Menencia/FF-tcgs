@@ -1,6 +1,7 @@
 class Deck {
 
-    constructor(name) {
+    constructor(owner, name) {
+        this.owner = owner;
         this.name = name;
         this.cards = [];
     }
