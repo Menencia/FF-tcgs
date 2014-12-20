@@ -5,13 +5,19 @@ class Play {
         this.player = new Player_Menencia(this);
         this.opponent = new Computer_Entry_Set_Black(this);
 
-
         // const
         this.PLAYER_TURN = 'player';
         this.OPPONENT_TURN = 'opponent';
 
         // current turn
         this.turn = this.PLAYER_TURN;
+
+        // draw 5 cards each one
+        this.player.draw();
+        this.player.draw();
+        this.player.draw();
+        this.player.draw();
+        this.player.draw();
 
         this.startPhase('draw');
         this.run();

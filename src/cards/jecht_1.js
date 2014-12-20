@@ -4,7 +4,7 @@ class Card_Jecht_1 extends Card {
         super(deck);
         this.name = 'Jecht';
         this.cost = [{elt: "fire", nbr: 5}];
-        this.position = 'Forward';
+        this.position = this.POSITION_FORWARD;
         this.title = 'Guardian';
         this.serial = '1-011R';
         this.power = 8000;
@@ -29,21 +29,16 @@ class Card_Jecht_1 extends Card {
 
     /**
      *
-     * @returns {*}
      */
     getPower() {
-        return this.power + this.game.opponent().forwards().length * 1000;
+        // todo
     }
 
     /**
      *
-     * @constructor
      */
-    UltimateJechtShot() {
-        this.game.choose({
-            forward: 1
-        }, (forward) =>
-            forward.break());
+    ability_UltimateJechtShot() {
+        // todo
     }
 
 }

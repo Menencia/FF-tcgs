@@ -4,7 +4,7 @@ class Card_Red_XIII_1 extends Card {
         super(deck);
         this.name = 'Red XIII';
         this.cost = [{elt: "fire", nbr: 3}];
-        this.position = 'forward';
+        this.position = this.POSITION_FORWARD;
         this.title = 'Warrior';
         this.serial = '1-023R';
         this.power = 7000;
@@ -21,7 +21,7 @@ class Card_Red_XIII_1 extends Card {
                 ],
                 name  : 'Cosmo Memory',
                 text  : 'Deal 6000 damage to all Forwards opponent controls.',
-                effect: this.CosmoMemory
+                effect: this.ability_CosmoMemory
             }
         ];
     }
@@ -30,20 +30,13 @@ class Card_Red_XIII_1 extends Card {
      *
      */
     onGame() {
-        this.game.choose({
-            forward: 1
-        }, (forward) => {
-            forward.power(3000)
-        });
+        // todo
     }
 
     /**
      *
-     * @constructor
      */
-    CosmoMemory() {
-        var forwards = this.game.opponent().forwards();
-        for (var forward in forwards)
-            forward.damage(6000);
+    ability_CosmoMemory() {
+        // todo
     }
 }

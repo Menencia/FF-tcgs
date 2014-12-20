@@ -3,6 +3,9 @@ class Card {
     constructor(deck) {
         this.deck = deck;
         this.dulled = false;
+
+        this.POSITION_FORWARD = 'forward';
+        this.POSITION_BACKUP = 'backup';
     }
 
     /**
