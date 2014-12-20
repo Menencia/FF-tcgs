@@ -40,7 +40,7 @@ class Game {
      *
      */
     redirect() {
-       if (!this.loaded) {
+       if (!this.play) {
            this.$location.path('/game');
        }
     }
