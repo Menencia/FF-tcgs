@@ -15,9 +15,9 @@ class Card_Red_XIII_1 extends Card {
             },
             {
                 cost  : [
-                    {elt: "special", nbr: ""},
+                    {elt: "special", nbr: 1},
                     {elt: "fire", nbr: 4},
-                    {elt: "dull", nbr: ""}
+                    {elt: "dull", nbr: 1}
                 ],
                 name  : 'Cosmo Memory',
                 text  : 'Deal 6000 damage to all Forwards opponent controls.',

@@ -1,61 +1,46 @@
+/* BOARD */
+
+.board {
+    margin: auto;
+    width: 1000px;
+}
+
+.player1 {
+    display: inline-block;
+    width: 500px;
+    vertical-align: top;
+}
+
+.player2 {
+    display: inline-block;
+    width: 500px;
+    vertical-align: top;
+}
+
+/* CARD */
+
 .card {
-  margin: 10px 0;
-  border: 1px solid #999;
+    margin: 10px 0;
+    border: 1px solid #999;
 }
 
 .ability .name {
-  color: #900;
-  font-weight: bold;
+    color: #900;
+    font-weight: bold;
 }
 
 .special {
-  width: 17px;
-  height: 17px;
-  background: url('../img/icons/special.png');
-  display: inline-block;
-  margin: 0 0 -3px 2px;
+    width: 17px;
+    height: 17px;
+    background: url('../img/icons/special.png');
+    display: inline-block;
+    margin: 0 0 -3px 2px;
 }
 
 .dull {
-  width: 17px;
-  height: 17px;
-  background: url('../img/icons/dull.png');
-  display: inline-block;
-  margin: 0 0 -3px 2px;
-}
-
-.elt {  
-  border-radius: 5px;
-  display: inline-block;
-  margin: 0 0 -3px 2px;
-}
-
-.wind {
-  color: #fff;
-  background-color: #090;
-}
-
-.fire {
-  color: #fff;
-  background-color: #900;
-}
-
-.aqua {
-  color: #fff;
-  background-color: #009;
-}
-
-.ice {
-  color: #fff;
-  background-color: #009;
-}
-
-.earth {
-  color: #fff;
-  background-color: #009;
-}
-
-.thunder {
-  color: #fff;
-  background-color: #009;
+    width: 17px;
+    height: 17px;
+    background: url('../img/icons/dull.png');
+    display: inline-block;
+    margin: 0 0 -3px 2px;
 }

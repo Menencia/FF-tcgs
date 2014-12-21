@@ -1,8 +1,13 @@
-<span class="elt {{c.elt}}" ng-repeat="c in card.cost">{{c.nbr}}</span>
-{{card.name}}<br />
+<img ng-repeat="c in card.cost" ng-src="./img/icons/{{c.elt}}_{{c.nbr}}.png">
+{{card.name}}<br/>
 <div class="ability" ng-repeat="ability in card.abilities">
-  <span class="elt {{c.elt}}" ng-repeat="c in ability.cost">{{c.nbr}}</span>
-  <span class="name">{{ability.name}}</span> {{ability.text}}
+  <span class="name">{{ability.name}}</span>
+  <span ng-repeat="cost in ability.cost">
+    <span ng-repeat="c in range(cost.nbr) track by $index">
+      <img ng-src="./img/icons/{{cost.elt}}.png"/>
+    </span>
+  </span>
+  {{ability.text}}
 </div>
 <button type="button" class="btn btn-primary btn-xs" ng-click="card.discard()">Discard</button>
 <button type="button" class="btn btn-primary btn-xs">Play</button>

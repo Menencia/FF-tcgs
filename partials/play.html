@@ -9,67 +9,71 @@
     <div class="col-md-3"></div>
 </div>
 
-<div class="row">
-    <div class="player col-md-6">
+<div class="board">
+    <div class="player1">
         <h5>
-            Player
-            <span class="elt {{key}}" ng-repeat="(key, value) in game.play.player.crystals">{{value}}</span>
+            {{game.play.player.name}}
+            <span ng-repeat="(elt, nbr) in game.play.player.crystals">
+                <span ng-repeat="c in range(nbr) track by $index">
+                    <img ng-src="./img/icons/{{elt}}.png"/>
+                </span>
+            </span>
+        </h5>
+
+        <div class="hand">
+            <h6>Hand</h6>
+
+            <div class="card" ng-repeat="card in game.play.player.hand" ng-include src="'./partials/card.html'"
+                 scope="card"></div>
+        </div>
+
+        <div class="breaks">
+            <h6>Breaks</h6>
+
+            <div ng-repeat="card in game.play.player.breaks"></div>
+        </div>
+
+        <div class="forwards">
+            <h6>Forwards</h6>
+
+            <div ng-repeat="card in game.play.player.forwards"></div>
+        </div>
+
+        <div class="backups">
+            <h6>Backups</h6>
+
+            <div ng-repeat="card in game.play.player.backups"></div>
+        </div>
+
+    </div><!--
+
+    --><div class="player2">
+        <h5>
+            {{game.play.opponent.name}}
+            <span ng-repeat="(elt, nbr) in game.play.opponent.crystals">
+                <span ng-repeat="c in range(nbr) track by $index">
+                    <img ng-src="./img/icons/{{elt}}.png"/>
+                </span>
+            </span>
         </h5>
 
         <div class="row">
 
-            <div class="hand col-md-6">
-                <h6>Hand</h6>
-
-                <div class="card" ng-repeat="card in game.play.player.hand" ng-include src="'./partials/card.html'"
-                     scope="card"></div>
-
-                <h6>Breaks</h6>
-
-                <div class="breaks">
-                    <div ng-repeat="card in game.play.player.breaks"></div>
-                </div>
-
-            </div>
-
             <div class="col-md-6">
                 <h6>Forwards</h6>
 
                 <div class="forwards">
-                    <div ng-repeat="card in game.play.player.forwards"></div>
+                    <div ng-repeat="card in game.play.opponent.forwards"></div>
                 </div>
 
                 <h6>Backups</h6>
 
                 <div class="backups">
-                    <div ng-repeat="card in game.play.player.backups"></div>
+                    <div ng-repeat="card in game.play.opponent.backups"></div>
                 </div>
             </div>
 
         </div>
-
     </div>
 
-    <div class="opponent col-md-6">
-        <h5>Computer</h5>
-
-        <div class="row">
-
-            <div class="col-md-6">
-                <h6>Forwards</h6>
-
-                <div class="forwards">
-                    <div ng-repeat="card in game.play.player.forwards"></div>
-                </div>
-
-                <h6>Backups</h6>
-
-                <div class="backups">
-                    <div ng-repeat="card in game.play.player.backups"></div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
 </div>

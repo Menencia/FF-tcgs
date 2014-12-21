@@ -50,7 +50,7 @@ class Card {
      * Discard a card from hand
      */
     discard() {
-        this.owner().hand = _.remove(this.owner.hand, this);
+        _.remove(this.owner().hand, this);
         this.owner().breaks.unshift(this);
 
         if ($.inArray(this.cost[0].elt, ['light', 'dark']) == -1) {

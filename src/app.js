@@ -55,7 +55,11 @@ app.controller('GameCtrl', function ($rootScope, $location, Game) {
 
     $rootScope.play = function () {
         Game.newPlay();
-    }
+    };
+
+    $rootScope.range = function(num) {
+        return new Array(num);
+    };
 
 });
 

@@ -15,10 +15,10 @@ class Card_Jecht_1 extends Card {
             },
             {
                 cost  : [
-                    {elt: "special", nbr: ""},
+                    {elt: "special", nbr: 1},
                     {elt: "fire", nbr: 1},
                     {elt: "dark", nbr: 2},
-                    {elt: "dull", nbr: ""}
+                    {elt: "dull", nbr: 1}
                 ],
                 name  : 'Ultimate Jecht Shot',
                 text  : 'Choose 1 Forward. Break it.',
