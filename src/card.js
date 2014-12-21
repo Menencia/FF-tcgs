@@ -119,4 +119,21 @@ class Card {
         // remove card from hand
         this.deplace(this.position);
     }
+
+    /**
+     * Only backup can dull
+     */
+    canSupport() {
+        var place = this.place == this.PLACE_BACKUP;
+        var dulled = this.dulled;
+        return place && !dulled;
+    }
+
+    /**
+     * Backup can dull to produce a crystal
+     */
+    support() {
+        this.owner().crystals.push(new Crystal(this.cost.elt));
+        this.dull();
+    }
 }
