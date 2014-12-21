@@ -9,9 +9,9 @@ var app = angular.module('ff-tcgs', ['ngRoute', 'ngCookies']);
 /**
  * Game Service
  */
-app.factory('Game', ['$rootScope', '$cookieStore', '$timeout', '$location',
+app.factory('Main', ['$rootScope', '$cookieStore', '$timeout', '$location',
     function ($rootScope, $cookieStore, $timeout, $location) {
-        return new Game($rootScope, $cookieStore, $timeout, $location);
+        return new Main($rootScope, $cookieStore, $timeout, $location);
     }]);
 
 /**
@@ -21,16 +21,16 @@ app.config(['$routeProvider',
     function ($routeProvider) {
 
         $routeProvider.
+            when('/home', {
+                templateUrl: 'partials/home.html',
+                controller : 'HomeCtrl'
+            }).
             when('/game', {
                 templateUrl: 'partials/game.html',
                 controller : 'GameCtrl'
             }).
-            when('/play', {
-                templateUrl: 'partials/play.html',
-                controller : 'PlayCtrl'
-            }).
             otherwise({
-                redirectTo: '/game'
+                redirectTo: '/home'
             });
     }
 ]);
@@ -39,7 +39,7 @@ app.config(['$routeProvider',
  * NAV
  */
 
-app.controller('IndexCtrl', function ($scope, $location, Game) {
+app.controller('IndexCtrl', function ($scope, $location, Main) {
 
     $scope.isActive = function (route) {
         return route === $location.path();
@@ -51,11 +51,7 @@ app.controller('IndexCtrl', function ($scope, $location, Game) {
  * /Game
  */
 
-app.controller('GameCtrl', function ($rootScope, $location, Game) {
-
-    $rootScope.play = function () {
-        Game.newPlay();
-    };
+app.controller('HomeCtrl', function ($rootScope, $location, Main) {
 
     $rootScope.range = function(num) {
         return new Array(num);
@@ -67,8 +63,8 @@ app.controller('GameCtrl', function ($rootScope, $location, Game) {
  * /Play
  */
 
-app.controller('PlayCtrl', function (Game) {
+app.controller('GameCtrl', function (Main) {
 
-    Game.redirect();
+    Main.redirect();
 
 });

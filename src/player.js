@@ -1,22 +1,15 @@
 class Player {
 
-    constructor(play, name, deck) {
+    constructor(game, name, deck) {
         // Play instance
-        this.play = play;
+        this.game = game;
 
         // build deck
         deck = new deck(this);
 
         this.name = name;
         this.deck = deck;
-        this.crystals = {
-            fire   : 0,
-            aqua   : 0,
-            wind   : 0,
-            ice    : 0,
-            earth  : 0,
-            thunder: 0
-        };
+        this.crystals = [];
         this.hand = [];
         this.breaks = [];
         this.backups = [];
@@ -38,5 +31,12 @@ class Player {
      */
     draw() {
         this.hand.push(this.deck.cards.shift());
+    }
+
+    /**
+     *
+     */
+    getActiveCrystals() {
+        return _.where(this.crystals, {active: true});
     }
 }

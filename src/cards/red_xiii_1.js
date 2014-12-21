@@ -3,7 +3,7 @@ class Card_Red_XIII_1 extends Card {
     constructor(deck) {
         super(deck);
         this.name = 'Red XIII';
-        this.cost = [{elt: "fire", nbr: 3}];
+        this.cost = {elt: "fire", nbr: 3};
         this.position = this.POSITION_FORWARD;
         this.title = 'Warrior';
         this.serial = '1-023R';

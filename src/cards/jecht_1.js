@@ -3,7 +3,7 @@ class Card_Jecht_1 extends Card {
     constructor(deck) {
         super(deck);
         this.name = 'Jecht';
-        this.cost = [{elt: "fire", nbr: 5}];
+        this.cost = {elt: "fire", nbr: 5};
         this.position = this.POSITION_FORWARD;
         this.title = 'Guardian';
         this.serial = '1-011R';

@@ -31,19 +31,19 @@ class Card {
     }
 
     /**
-     * Play instance
-     * @returns {play|Function|$rootScope.play}
-     */
-    play() {
-        return this.owner().play;
-    }
-
-    /**
      * Game instance
      * @returns {game|Game.$rootScope.game|Play.game}
      */
     game() {
-        return this.play().game;
+        return this.owner().game;
+    }
+
+    /**
+     * App instance
+     * @returns {app}
+     */
+    app() {
+        return this.game().app;
     }
 
     /**
@@ -53,8 +53,38 @@ class Card {
         _.remove(this.owner().hand, this);
         this.owner().breaks.unshift(this);
 
-        if ($.inArray(this.cost[0].elt, ['light', 'dark']) == -1) {
-            this.owner().crystals[this.cost[0].elt] += 2;
+        if ($.inArray(this.cost.elt, ['light', 'dark']) == -1) {
+            for (var i in [0, 2]) {
+                this.owner().crystals.push(new Crystal(this.cost.elt));
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    canPlay() {
+        var crystals = this.owner().getActiveCrystals();
+        var crystal = _.find(crystals, {elt: this.cost.elt});
+        return crystal && crystals.length == this.cost.nbr;
+    }
+
+    /**
+     * Play a card onto the field
+     */
+    play() {
+        // remove active crystals
+        _.remove(this.owner().crystals, {active: true});
+
+        // remove card from hand
+        _.remove(this.owner().hand, this);
+
+        // place card on field
+        if (this.position == this.POSITION_FORWARD) {
+            this.owner().forwards.push(this);
+        }
+        if (this.position == this.POSITION_BACKUP) {
+            this.owner().backups.push(this);
         }
     }
 }

@@ -17,6 +17,25 @@
     vertical-align: top;
 }
 
+/* MODAL */
+
+.modal {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+}
+
+.modal_content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    background-color: white;
+}
+
 /* CARD */
 
 .card {
@@ -43,4 +62,8 @@
     background: url('../img/icons/dull.png');
     display: inline-block;
     margin: 0 0 -3px 2px;
+}
+
+.active {
+    border: 1px solid black;
 }

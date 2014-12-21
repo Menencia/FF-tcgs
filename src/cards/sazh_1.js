@@ -3,7 +3,7 @@ class Card_Sazh_1 extends Card {
     constructor(deck) {
         super(deck);
         this.name = 'Sazh';
-        this.cost = [{elt: "fire", nbr: 3}];
+        this.cost = {elt: "fire", nbr: 3};
         this.position = this.POSITION_BACKUP;
         this.title = 'Blaster';
         this.serial = '1-008U';
