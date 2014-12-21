@@ -28,20 +28,20 @@
         <div class="breaks">
             <h6>Breaks</h6>
 
-            <div ng-repeat="card in app.game.player.breaks"></div>
+            <div ng-repeat="card in app.game.player.break"></div>
         </div>
 
         <div class="forwards">
             <h6>Forwards</h6>
 
-            <div class="card" ng-repeat="card in app.game.player.forwards" ng-include src="'./partials/card.html'"
+            <div class="card" ng-repeat="card in app.game.player.forward" ng-include src="'./partials/card.html'"
                  scope="card"></div>
         </div>
 
         <div class="backups">
             <h6>Backups</h6>
 
-            <div class="card" ng-repeat="card in app.game.player.backups" ng-include src="'./partials/card.html'"
+            <div class="card" ng-repeat="card in app.game.player.backup" ng-include src="'./partials/card.html'"
                  scope="card"></div>
         </div>
 

@@ -6,11 +6,18 @@ class Game {
         this.opponent = new Computer_Entry_Set_Black(this);
 
         // const
-        this.PLAYER_TURN = 'player';
-        this.OPPONENT_TURN = 'opponent';
+        this.TURN_PLAYER = 'player';
+        this.TURN_OPPONENT = 'opponent';
+
+        this.PHASE_DRAW = 'draw';
+        this.PHASE_MAIN_1 = 'main1';
+        this.PHASE_ATTACK = 'attack';
+        this.PHASE_MAIN_2 = 'main2';
+        this.PHASE_END = 'main2';
+        this.PHASE_RESET = 'main2';
 
         // current turn
-        this.turn = this.PLAYER_TURN;
+        this.turn = this.TURN_PLAYER;
 
         // draw 5 cards each one
         this.player.draw();
@@ -19,7 +26,7 @@ class Game {
         this.player.draw();
         this.player.draw();
 
-        this.startPhase('draw');
+        this.startPhase(this.PHASE_DRAW);
         this.run();
     }
 
@@ -36,7 +43,7 @@ class Game {
      * @returns {boolean}
      */
     isMe() {
-        return this.turn == this.PLAYER_TURN;
+        return this.turn == this.TURN_PLAYER;
     }
 
     /**
@@ -48,26 +55,26 @@ class Game {
 
             if (this.time <= 0) {
                 switch (this.phase) {
-                    case 'reset':
+                    case this.PHASE_RESET:
                         this.current().undullCards();
-                        this.startPhase('draw');
+                        this.startPhase(this.PHASE_DRAW);
                         break;
-                    case 'draw':
+                    case this.PHASE_DRAW:
                         this.current().draw();
-                        this.startPhase('main1', 60);
+                        this.startPhase(this.PHASE_MAIN_1, 60);
                         break;
-                    case 'main1':
-                        this.startPhase('attack', 100);
+                    case this.PHASE_MAIN_1:
+                        this.startPhase(this.PHASE_ATTACK, 100);
                         break;
-                    case 'attack':
-                        this.startPhase('main2', 60);
+                    case this.PHASE_ATTACK:
+                        this.startPhase(this.PHASE_MAIN_2, 60);
                         break;
-                    case 'main2':
-                        this.startPhase('end');
+                    case this.PHASE_MAIN_2:
+                        this.startPhase(this.PHASE_END);
                         break;
-                    case 'end':
-                        this.turn = (this.PLAYER_TURN) ? this.OPPONENT_TURN : this.PLAYER_TURN;
-                        this.startPhase('reset');
+                    case this.PHASE_END:
+                        this.turn = (this.TURN_PLAYER) ? this.TURN_OPPONENT : this.TURN_PLAYER;
+                        this.startPhase(this.PHASE_RESET);
                         break;
                 }
             }

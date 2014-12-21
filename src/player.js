@@ -6,23 +6,24 @@ class Player {
 
         // build deck
         deck = new deck(this);
+        deck.shuffle();
 
         this.name = name;
         this.deck = deck;
         this.crystals = [];
         this.hand = [];
-        this.breaks = [];
-        this.backups = [];
-        this.forwards = [];
+        this.break = [];
+        this.backup = [];
+        this.forward = [];
     }
 
     /**
      *
      */
     undullCards() {
-        for (var card of this.forwards)
+        for (var card of this.forward)
             card.undull();
-        for (var card of this.backups)
+        for (var card of this.backup)
             card.undull();
     }
 
@@ -30,7 +31,8 @@ class Player {
      *
      */
     draw() {
-        this.hand.push(this.deck.cards.shift());
+        var card = _.last(this.deck.cards);
+        card.deplaceToHand();
     }
 
     /**

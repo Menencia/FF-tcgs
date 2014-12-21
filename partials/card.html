@@ -9,5 +9,5 @@
   </span>
   {{ability.text}}
 </div>
-<button type="button" class="btn btn-primary btn-xs" ng-click="card.discard()">Discard</button>
+<button type="button" class="btn btn-primary btn-xs" ng-show="card.canDiscard()" ng-click="card.discard()">Discard</button>
 <button type="button" class="btn btn-primary btn-xs" ng-show="card.canPlay()" ng-click="card.play()">Play</button>

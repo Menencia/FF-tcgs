@@ -6,6 +6,14 @@ class Card {
 
         this.POSITION_FORWARD = 'forward';
         this.POSITION_BACKUP = 'backup';
+
+        this.PLACE_DECK = 'deck';
+        this.PLACE_HAND = 'hand';
+        this.PLACE_BREAK = 'break';
+        this.PLACE_BACKUP = 'backup';
+        this.PLACE_FORWARD = 'forward';
+
+        this.place = this.PLACE_DECK;
     }
 
     /**
@@ -32,10 +40,34 @@ class Card {
 
     /**
      * Game instance
-     * @returns {game|Game.$rootScope.game|Play.game}
+     * @returns {game|Player.game|Game.game}
      */
     game() {
         return this.owner().game;
+    }
+
+    /**
+     * Move a card to a new place
+     */
+    deplace(place) {
+        var list;
+
+        if (this.place == 'deck') {
+            list = this.owner()[this.place].cards;
+        } else {
+            list = this.owner()[this.place];
+        }
+
+        _.remove(list, this);
+        this.owner()[place].push(this);
+        this.place = place;
+    }
+
+    /**
+     * Move a card to the hand
+     */
+    deplaceToHand() {
+        this.deplace(this.PLACE_HAND);
     }
 
     /**
@@ -47,11 +79,19 @@ class Card {
     }
 
     /**
+     *
+     */
+    canDiscard() {
+        var inPhase = $.inArray(this.game().phase, [this.game().PHASE_MAIN_1, this.game().PHASE_MAIN_2]) > -1;
+        var inHand = (this.place == this.PLACE_HAND);
+        return inPhase && inHand;
+    }
+
+    /**
      * Discard a card from hand
      */
     discard() {
-        _.remove(this.owner().hand, this);
-        this.owner().breaks.unshift(this);
+        this.deplace(this.PLACE_BREAK);
 
         if ($.inArray(this.cost.elt, ['light', 'dark']) == -1) {
             for (var i in [0, 2]) {
@@ -77,14 +117,6 @@ class Card {
         _.remove(this.owner().crystals, {active: true});
 
         // remove card from hand
-        _.remove(this.owner().hand, this);
-
-        // place card on field
-        if (this.position == this.POSITION_FORWARD) {
-            this.owner().forwards.push(this);
-        }
-        if (this.position == this.POSITION_BACKUP) {
-            this.owner().backups.push(this);
-        }
+        this.deplace(this.position);
     }
 }

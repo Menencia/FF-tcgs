@@ -13,4 +13,11 @@ class Deck {
     add(card) {
         this.cards.push(card);
     }
+
+    /**
+     * Mix the cards
+     */
+    shuffle() {
+        _.shuffle(this.cards);
+    }
 }

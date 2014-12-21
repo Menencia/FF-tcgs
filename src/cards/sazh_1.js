@@ -10,7 +10,7 @@ class Card_Sazh_1 extends Card {
         this.abilities = [
             {
                 cost  : [
-                    {elt: "dull", nbr: ""}
+                    {elt: "dull", nbr: 1}
                 ],
                 text  : "Choose 1 Forward. Deal it 2000 damage. If you summoned Brynhildr this turn, deal it 4000 damage instead. Sazh doesn't become Active during your next Active Phase.",
                 effect: this.ability

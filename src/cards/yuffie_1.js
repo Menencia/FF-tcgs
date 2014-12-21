@@ -15,9 +15,9 @@ class Card_Yuffie_1 extends Card {
             },
             {
                 cost  : [
-                    {elt: "special", nbr: ""},
+                    {elt: "special", nbr: 1},
                     {elt: "wind", nbr: 1},
-                    {elt: "dull", nbr: ""}
+                    {elt: "dull", nbr: 1}
                 ],
                 name  : 'Bloodfest',
                 text  : 'Choose up to 3 Forwards. Distribute a total of 6000 Damage among them however you like (in increments of 1000).',

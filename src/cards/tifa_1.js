@@ -11,9 +11,9 @@ class Card_Tifa_1 extends Card {
         this.abilities = [
             {
                 cost  : [
-                    {elt: "super", nbr: ""},
-                    {elt: "fire", nbr: "1"},
-                    {elt: "light", nbr: "1"}
+                    {elt: "special", nbr: 1},
+                    {elt: "fire", nbr: 1},
+                    {elt: "light", nbr: 1}
                 ],
                 name  : 'Waterkick',
                 text  : "Choose 1 Forward. Dull it and deal it 6000 damage.",
