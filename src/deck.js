@@ -18,6 +18,6 @@ class Deck {
      * Mix the cards
      */
     shuffle() {
-        _.shuffle(this.cards);
+        this.cards = _.shuffle(this.cards);
     }
 }
