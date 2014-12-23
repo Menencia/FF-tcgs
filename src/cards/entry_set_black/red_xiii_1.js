@@ -2,9 +2,10 @@ class Card_Red_XIII_1 extends Card {
 
     constructor(deck) {
         super(deck);
+        this.groupType = this.GROUP_TYPE_CHARACTER;
+        this.cardType = this.CARD_TYPE_FORWARD;
         this.name = 'Red XIII';
         this.cost = {elt: "fire", nbr: 3};
-        this.position = this.POSITION_FORWARD;
         this.title = 'Warrior';
         this.serial = '1-023R';
         this.power = 7000;

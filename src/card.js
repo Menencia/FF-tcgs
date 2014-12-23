@@ -4,16 +4,18 @@ class Card {
         this.deck = deck;
         this.dulled = false;
 
-        this.POSITION_FORWARD = 'forward';
-        this.POSITION_BACKUP = 'backup';
+        this.GROUP_TYPE_CHARACTER = 'character';
+        this.GROUP_TYPE_SUMMON = 'summon';
+        this.GROUP_TYPE_ITEM = 'item';
 
-        this.PLACE_DECK = 'deck';
-        this.PLACE_HAND = 'hand';
-        this.PLACE_BREAK = 'break';
-        this.PLACE_BACKUP = 'backup';
-        this.PLACE_FORWARD = 'forward';
+        this.CARD_TYPE_FORWARD = 'forward';
+        this.CARD_TYPE_BACKUP = 'backup';
+        this.CARD_TYPE_MONSTER = 'monster';
+        this.CARD_TYPE_WEAPON = 'weapon';
+        this.CARD_TYPE_ARMOR = 'armor';
+        this.CARD_TYPE_ACCESSORY = 'accessory';
 
-        this.place = this.PLACE_DECK;
+        this.zone = this.owner().ZONE_DECK;
     }
 
     /**
@@ -47,27 +49,31 @@ class Card {
     }
 
     /**
-     * Move a card to a new place
+     * Move a card to a new zone
      */
-    deplace(place) {
+    deplace(zone) {
+
+        // remove from current zone
         var list;
 
-        if (this.place == 'deck') {
-            list = this.owner()[this.place].cards;
+        if (this.zone == this.owner().ZONE_DECK) {
+            list = this.owner()[this.zone].cards;
         } else {
-            list = this.owner()[this.place];
+            list = this.owner()[this.zone];
         }
 
         _.remove(list, this);
-        this.owner()[place].push(this);
-        this.place = place;
+
+        // add to new zone
+        this.owner()[zone].push(this);
+        this.zone = zone;
     }
 
     /**
      * Move a card to the hand
      */
     deplaceToHand() {
-        this.deplace(this.PLACE_HAND);
+        this.deplace(this.owner().ZONE_HAND);
     }
 
     /**
@@ -83,7 +89,7 @@ class Card {
      */
     canDiscard() {
         var inPhase = $.inArray(this.game().phase, [this.game().PHASE_MAIN_1, this.game().PHASE_MAIN_2]) > -1;
-        var inHand = (this.place == this.PLACE_HAND);
+        var inHand = (this.zone == this.owner().ZONE_HAND);
         return inPhase && inHand;
     }
 
@@ -91,7 +97,7 @@ class Card {
      * Discard a card from hand
      */
     discard() {
-        this.deplace(this.PLACE_BREAK);
+        this.deplace(this.owner().ZONE_BREAK);
 
         if ($.inArray(this.cost.elt, ['light', 'dark']) == -1) {
             for (var i in [0, 2]) {
@@ -117,16 +123,17 @@ class Card {
         _.remove(this.owner().crystals, {active: true});
 
         // remove card from hand
-        this.deplace(this.position);
+        this.deplace(this.owner().ZONE_FIELD);
     }
 
     /**
      * Only backup can dull
      */
     canSupport() {
-        var place = this.place == this.PLACE_BACKUP;
+        var zone = this.zone == this.owner.ZONE_FIELD;
+        var cardType = this.cartType == this.CARD_TYPE_BACKUP;
         var dulled = this.dulled;
-        return place && !dulled;
+        return zone && cardType && !dulled;
     }
 
     /**

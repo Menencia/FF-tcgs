@@ -2,8 +2,14 @@ class Game {
 
     constructor(game) {
         this.game = game;
+
         this.player = new Player_Menencia(this);
+        this.player.prepare(Deck_Entry_Set_Black);
+
         this.opponent = new Computer_Entry_Set_Black(this);
+        this.opponent.prepare(Deck_Entry_Set_Black);
+
+        this.stack = new Stack(this);
 
         // const
         this.TURN_PLAYER = 'player';

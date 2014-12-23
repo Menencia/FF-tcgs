@@ -1,20 +1,29 @@
 class Player {
 
-    constructor(game, name, deck) {
+    constructor(game, name) {
         // Play instance
         this.game = game;
 
-        // build deck
-        deck = new deck(this);
-        deck.shuffle();
+        this.ZONE_FIELD = 'field';
+        this.ZONE_DAMAGE = 'damage';
+        this.ZONE_DECK = 'deck';
+        this.ZONE_BREAK = 'break';
+        this.ZONE_HAND = 'hand';
 
         this.name = name;
-        this.deck = deck;
         this.crystals = [];
         this.hand = [];
         this.break = [];
-        this.backup = [];
-        this.forward = [];
+        this.field = [];
+    }
+
+    /**
+     * Build deck
+     */
+    prepare(deck) {
+        deck = new deck(this);
+        deck.shuffle();
+        this.deck = deck;
     }
 
     /**

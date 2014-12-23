@@ -2,9 +2,10 @@ class Card_Sazh_1 extends Card {
 
     constructor(deck) {
         super(deck);
+        this.groupType = this.GROUP_TYPE_CHARACTER;
+        this.cardType = this.CARD_TYPE_BACKUP;
         this.name = 'Sazh';
         this.cost = {elt: "fire", nbr: 3};
-        this.position = this.POSITION_BACKUP;
         this.title = 'Blaster';
         this.serial = '1-008U';
         this.abilities = [
